@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Vehicle_Service_Final_Proj.Models.ServiceBookingRecord>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Service Bookings</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+
+            <th>
+                Reference No
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Service)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VehicleOwner)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+
+            <td>
+                SR00000000_ @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Service.ServiceName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VehicleOwner.Name)
+            </td>
+            <td>
+
+                <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                <a class="btn btn-primary" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

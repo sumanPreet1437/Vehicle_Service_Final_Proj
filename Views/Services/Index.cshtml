@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Vehicle_Service_Final_Proj.Models.Service>
+
+@{
+    ViewData["Title"] = "Index";
+}
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<IdentityUser> SignInManager
+
+<h1>Vehicle Services Offered</h1>
+
+@if (SignInManager.IsSignedIn(User) && User.IsInRole("vehicle_admin")) { 
+    <p>
+        <a class="btn btn-primary" asp-action="Create">+Add Service</a>
+    </p>
+}
+
+
+@foreach (var item in Model)
+{
+
+    <div class="card text-center">
+
+        <div class="card-body">
+            <h5 class="card-title"> @Html.DisplayFor(modelItem => item.ServiceName)</h5>
+            <p class="card-text">Service Charge $ @Html.DisplayFor(modelItem => item.ServiceCharge)</p>
+            <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.Id">View Service Details</a>
+        </div>
+        <div class="card-footer text-muted">
+            @if (SignInManager.IsSignedIn(User) && User.IsInRole("vehicle_admin"))
+            {
+                <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.Id">Update</a>
+                <a class="btn btn-primary" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            }
+        </div>
+    </div>
+
+
+
+}
+

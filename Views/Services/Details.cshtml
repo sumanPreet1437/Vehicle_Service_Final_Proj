@@ -1,0 +1,45 @@
+﻿@model Vehicle_Service_Final_Proj.Models.Service
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<IdentityUser> SignInManager
+<h1>Details</h1>
+
+<div>
+    <h4>Service</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ServiceName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ServiceName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ServiceCharge)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ServiceCharge)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+    </dl>
+</div>
+
+
+@if (SignInManager.IsSignedIn(User) && User.IsInRole("vehicle_owner"))
+{
+<div>
+    <a class="btn btn-primary" href="/ServiceBookingRecords/Create/@Html.DisplayFor(model => model.Id)">Create a Booking </a> 
+
+</div>
+}

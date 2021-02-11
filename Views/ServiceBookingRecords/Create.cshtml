@@ -1,0 +1,25 @@
+﻿@model Vehicle_Service_Final_Proj.Models.ServiceBookingRecord
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>ServiceBookingRecord</h4>
+<hr />
+
+<h4> Service has been booked. Your Reference is SR00000000_@Model.Id</h4>
+
+<h5>Vehicle Owner Email  :  @Model.VehicleOwner.Email</h5>
+
+<h5>Vehicle Owner Name :  @Model.VehicleOwner.Name</h5>
+
+<h5> Service : @Model.Service.ServiceName  </h5>
+<h5> Charge  : $ @Model.Service.ServiceCharge </h5>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
